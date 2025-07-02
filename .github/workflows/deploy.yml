@@ -40,9 +40,4 @@ jobs:
           sudo docker pull nipung29/digital-wallet:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run -d \
-            --name web-app \
-            --restart unless-stopped \
-            -p 3005:3000 \
-            -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
-            nipung29/digital-wallet:latest
+          sudo docker run -d --name web-app --restart unless-stopped -p 3005:3000 -e DATABASE_URL=${{ secrets.DATABASE_URL }} nipung29/digital-wallet:latest

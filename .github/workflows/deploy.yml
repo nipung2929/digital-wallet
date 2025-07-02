@@ -24,10 +24,10 @@ jobs:
         context: .
         file: ./docker/Dockerfile.user
         push: true
-        tags: nipung29/digital-wallet:latest  # Replace with your Docker Hub username and repository
+        tags: nipung29/digital-wallet:latest
 
     - name: Verify Pushed Image
-      run: docker pull nipung29/digital-wallet:latest  # Replace with your Docker Hub username and repository
+      run: docker pull nipung29/digital-wallet:latest
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
@@ -36,6 +36,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
+          set -e
           sudo docker pull nipung29/digital-wallet:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
